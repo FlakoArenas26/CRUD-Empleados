@@ -1,0 +1,49 @@
+<div class="header bg-black">
+	<div class="title my-2 py-2">
+		<h1 class="text-center text-white">Empleados</h1>
+	</div>
+</div>
+<div class="container mt-5 pt-5">
+	<div class="button-new my-3" *ngIf="showNewButton">
+		<button class="btn btn-success" (click)="initNewEmployee()">
+			Nuevo
+		</button>
+	</div>
+
+	<app-edit-employee
+		[employee]="employeeToEdit"
+		(employeesUpdate)="updateEmployeeList($event)"
+	></app-edit-employee>
+
+	<div class="table my-3 py-1">
+		<h1 class="text-center my-3 py-2">Lista de Empleados</h1>
+		<table class="table table-striped rounded rounded-3 mt-3 pt-3">
+			<thead class="text-center">
+				<th class="text-dark">Id</th>
+				<th class="text-dark">Nombre</th>
+				<th class="text-dark">Apellido</th>
+				<th class="text-dark">Teléfono</th>
+				<th class="text-dark">Email</th>
+				<th class="text-dark">Profesión</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of employees">
+					<td class="text-center">{{ employee.id }}</td>
+					<td class="text-center">{{ employee.name }}</td>
+					<td class="text-center">{{ employee.lastName }}</td>
+					<td class="text-center">{{ employee.phone }}</td>
+					<td class="text-center">{{ employee.email }}</td>
+					<td class="text-center">{{ employee.profession }}</td>
+					<td class="text-center">
+						<button
+							class="btn btn-warning"
+							(click)="editEmployee(employee)"
+						>
+							Editar
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
